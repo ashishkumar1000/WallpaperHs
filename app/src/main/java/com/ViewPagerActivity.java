@@ -17,22 +17,28 @@ package com;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.widget.RelativeLayout;
 
 import com.adapter.ViewPagerAdapter;
 import com.model.ImageListDTO;
 import com.util.AppConstants;
 import com.util.GsonUtils;
 import com.wallpaperhs.R;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import io.paperdb.Paper;
 
+import static android.view.View.GONE;
+
 public class ViewPagerActivity extends BaseActivity {
     String urlToHit = "";
     List<String> url_list = new ArrayList<>();
     private ViewPagerAdapter adapter = new ViewPagerAdapter(url_list);
+    private RelativeLayout rl_loading;
+    private AVLoadingIndicatorView avi;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,7 +48,13 @@ public class ViewPagerActivity extends BaseActivity {
         urlToHit = getIntent().getExtras().getString(MainActivity.URL_FOR_IMAGE_LIST);
 
         ViewPager mViewPager = (HackyViewPager) findViewById(R.id.view_pager);
-        setContentView(mViewPager);
+        rl_loading = (RelativeLayout) findViewById(R.id.rl_loading);
+        avi = (AVLoadingIndicatorView) findViewById(R.id.avi);
+
+        //Start Animation
+        avi.smoothToShow();
+
+        //setContentView(mViewPager);
         mViewPager.setAdapter(adapter);
 
         populateDataFromServer();
@@ -69,6 +81,11 @@ public class ViewPagerActivity extends BaseActivity {
         ImageListDTO imageListDTO = GsonUtils.getInstance().deserializeJSON(response, ImageListDTO.class);
         url_list = imageListDTO.getImageList();
         adapter.reloadList(url_list);
+
+        //Hide loading panel
+        rl_loading.setVisibility(GONE);
+
+        //Write data to paperDb.
         Paper.book().write(Integer.toString(urlToHit.hashCode()), response);
     }
 }

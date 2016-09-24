@@ -69,6 +69,7 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
                 .load(category.getImgUrl())
                 .fit()
                 .centerCrop()
+                .placeholder(R.drawable.foxy)
                 .networkPolicy(NetworkPolicy.OFFLINE)
                 .into(holder.thumbnail, new Callback() {
                     @Override
@@ -82,6 +83,7 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
                         Picasso.with(mContext)
                                 .load(category.getImgUrl())
                                 .fit()
+                                .placeholder(R.drawable.foxy)
                                 .centerCrop()
                                 .into(holder.thumbnail, new Callback() {
                                     @Override

@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
+import com.wallpaperhs.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,11 +36,10 @@ public class ViewPagerAdapter extends PagerAdapter {
 
         Picasso picasso = Picasso.with(container.getContext());
         picasso.setIndicatorsEnabled(false);
-        picasso.with(container.getContext())
-                .load(url_list.get(position))
+        picasso.load(url_list.get(position))
                 .fit()
                 .centerCrop()
-
+                .placeholder(R.drawable.progress_animation)
                 .networkPolicy(NetworkPolicy.OFFLINE)
                 .into(photoView, new Callback() {
                     @Override
@@ -52,6 +52,7 @@ public class ViewPagerAdapter extends PagerAdapter {
                         //Try again online if cache failed
                         Picasso.with(container.getContext())
                                 .load(url_list.get(position))
+                                .placeholder(R.drawable.progress_animation)
                                 .fit()
                                 .centerCrop()
                                 .into(photoView, new Callback() {
