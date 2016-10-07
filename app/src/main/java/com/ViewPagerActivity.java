@@ -20,6 +20,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.adapter.ViewPagerAdapter;
 import com.model.ImageListDTO;
@@ -124,6 +125,7 @@ public class ViewPagerActivity extends BaseActivity implements View.OnClickListe
 
         if (v.getId() == R.id.tv_set_wallpaper) {
             adapter.setWallpaper();
+            Toast.makeText(this, "Please wait while we set wallpaper for you...", Toast.LENGTH_LONG).show();
         }
     }
 
