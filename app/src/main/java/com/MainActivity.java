@@ -186,4 +186,10 @@ public class MainActivity extends BaseActivity {
         intent.putExtra(URL_FOR_IMAGE_LIST, imgListUrl);
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        StartAppAd.showAd(this);
+        super.onBackPressed();
+    }
 }

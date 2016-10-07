@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import com.adapter.ViewPagerAdapter;
 import com.model.ImageListDTO;
+import com.startapp.android.publish.StartAppAd;
 import com.util.AppConstants;
 import com.util.GsonUtils;
 import com.wallpaperhs.R;
@@ -30,6 +31,9 @@ import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 import io.paperdb.Paper;
 
@@ -57,7 +61,7 @@ public class ViewPagerActivity extends BaseActivity implements View.OnClickListe
         tv_set_wallpaper = (TextView) findViewById(R.id.tv_set_wallpaper);
         tv_share = (TextView) findViewById(R.id.tv_share);
 
-
+        showsplashAd(this, savedInstanceState);
         //Start Animation
         avi.smoothToShow();
 
@@ -69,6 +73,18 @@ public class ViewPagerActivity extends BaseActivity implements View.OnClickListe
         //Set OnclickListner
         tv_share.setOnClickListener(this);
         tv_set_wallpaper.setOnClickListener(this);
+    }
+
+    private void showsplashAd(final ViewPagerActivity viewPagerActivity, final Bundle savedInstanceState) {
+        ScheduledExecutorService scheduler =
+                Executors.newSingleThreadScheduledExecutor();
+
+        scheduler.scheduleAtFixedRate
+                (new Runnable() {
+                    public void run() {
+                        StartAppAd.showSplash(viewPagerActivity, savedInstanceState);
+                    }
+                }, 0, 30, TimeUnit.MINUTES);
     }
 
 
@@ -109,5 +125,11 @@ public class ViewPagerActivity extends BaseActivity implements View.OnClickListe
         if (v.getId() == R.id.tv_set_wallpaper) {
             adapter.setWallpaper();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        StartAppAd.onBackPressed(this);
+        super.onBackPressed();
     }
 }

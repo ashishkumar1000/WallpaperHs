@@ -13,6 +13,7 @@ import android.support.v4.app.DialogFragment;
 import com.squareup.picasso.OkHttpDownloader;
 import com.squareup.picasso.Picasso;
 import com.startapp.android.publish.StartAppSDK;
+import com.wallpaperhs.R;
 
 import io.paperdb.Paper;
 
@@ -37,7 +38,7 @@ public class AppUtils extends Application {
 
 
         Paper.init(this);
-        StartAppSDK.init(this,"208475070",true);
+        StartAppSDK.init(this,getResources().getString(R.string.AD_APP_ID),true);
     }
 
     public Context getContext() {
