@@ -3,5 +3,5 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:src="@drawable/absolute_peers"
+    android:src="@drawable/icon"
     android:transitionName="@string/transition_test" />

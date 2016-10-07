@@ -68,7 +68,7 @@ public class SimpleSampleActivity extends AppCompatActivity {
         ImageView mImageView = (ImageView) findViewById(R.id.iv_photo);
         //mCurrMatrixTv = (TextView) findViewById(R.id.tv_current_matrix);
 
-        Drawable bitmap = ContextCompat.getDrawable(this, R.drawable.absolute_peers);
+        Drawable bitmap = ContextCompat.getDrawable(this, R.drawable.icon);
         mImageView.setImageDrawable(bitmap);
 
         // The MAGIC happens here!

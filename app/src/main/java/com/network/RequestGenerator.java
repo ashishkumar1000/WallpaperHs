@@ -9,7 +9,8 @@ import okhttp3.CacheControl;
 import okhttp3.Request;
 
 public class RequestGenerator {
-    private final static String DOMAIN_CONNECT_URL_WITH_PROTOCOL = "http://thinktankindia.site88.net";
+
+    private final static String DOMAIN_CONNECT_URL_WITH_PROTOCOL = "https://admob-app-id-9589461173.firebaseapp.com/wallpaper/json";
     private final static String WALLPAPER_CATEGORY_URL = DOMAIN_CONNECT_URL_WITH_PROTOCOL + "/wallpaper_category.json";
     private final static String NETWORK_INFO_URL = "http://www.ip-api.com/json";
     private static final int MAX_CACHE_DAYS = 1;

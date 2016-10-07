@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.model.WallpaperCategory;
 import com.model.WallpaperModel;
+import com.startapp.android.publish.StartAppAd;
 import com.util.AppConstants;
 import com.util.GsonUtils;
 import com.util.SharedPrefUtils;
@@ -58,6 +59,8 @@ public class MainActivity extends BaseActivity {
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
+
+        StartAppAd.showSplash(this, savedInstanceState);
 
         try {
             Glide.with(this).load(R.drawable.cover).into((ImageView) findViewById(R.id.backdrop));

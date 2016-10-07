@@ -19,4 +19,6 @@
     <string name="action_play_next">Play Next</string>
     <string name="backdrop_title">WALLPAPER HD</string>
     <string name="backdrop_subtitle">High quality free wallpapers.</string>
+    <string name="SET_WALLPAPER">Set Wallpaper</string>
+    <string name="SHARE">Share</string>
 </resources>

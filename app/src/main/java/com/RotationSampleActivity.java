@@ -35,7 +35,7 @@ public class RotationSampleActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         photo = new PhotoView(this);
-        photo.setImageResource(R.drawable.absolute_peers);
+        photo.setImageResource(R.drawable.icon);
         setContentView(photo);
     }
 

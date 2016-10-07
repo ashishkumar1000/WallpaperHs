@@ -17,7 +17,9 @@ package com;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.adapter.ViewPagerAdapter;
 import com.model.ImageListDTO;
@@ -33,12 +35,14 @@ import io.paperdb.Paper;
 
 import static android.view.View.GONE;
 
-public class ViewPagerActivity extends BaseActivity {
+public class ViewPagerActivity extends BaseActivity implements View.OnClickListener {
     String urlToHit = "";
     List<String> url_list = new ArrayList<>();
     private ViewPagerAdapter adapter = new ViewPagerAdapter(url_list);
     private RelativeLayout rl_loading;
     private AVLoadingIndicatorView avi;
+    private TextView tv_set_wallpaper;
+    private TextView tv_share;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,6 +54,9 @@ public class ViewPagerActivity extends BaseActivity {
         ViewPager mViewPager = (HackyViewPager) findViewById(R.id.view_pager);
         rl_loading = (RelativeLayout) findViewById(R.id.rl_loading);
         avi = (AVLoadingIndicatorView) findViewById(R.id.avi);
+        tv_set_wallpaper = (TextView) findViewById(R.id.tv_set_wallpaper);
+        tv_share = (TextView) findViewById(R.id.tv_share);
+
 
         //Start Animation
         avi.smoothToShow();
@@ -58,6 +65,10 @@ public class ViewPagerActivity extends BaseActivity {
         mViewPager.setAdapter(adapter);
 
         populateDataFromServer();
+
+        //Set OnclickListner
+        tv_share.setOnClickListener(this);
+        tv_set_wallpaper.setOnClickListener(this);
     }
 
 
@@ -87,5 +98,16 @@ public class ViewPagerActivity extends BaseActivity {
 
         //Write data to paperDb.
         Paper.book().write(Integer.toString(urlToHit.hashCode()), response);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.tv_share) {
+            adapter.shareImage();
+        }
+
+        if (v.getId() == R.id.tv_set_wallpaper) {
+            adapter.setWallpaper();
+        }
     }
 }

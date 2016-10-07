@@ -12,8 +12,10 @@ import android.support.v4.app.DialogFragment;
 
 import com.squareup.picasso.OkHttpDownloader;
 import com.squareup.picasso.Picasso;
+import com.startapp.android.publish.StartAppSDK;
 
 import io.paperdb.Paper;
+
 
 
 public class AppUtils extends Application {
@@ -35,6 +37,7 @@ public class AppUtils extends Application {
 
 
         Paper.init(this);
+        StartAppSDK.init(this,"208475070",true);
     }
 
     public Context getContext() {
