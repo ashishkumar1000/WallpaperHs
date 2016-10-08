@@ -97,6 +97,7 @@ public class ViewPagerAdapter extends PagerAdapter {
 
 
     public void reloadList(List<String> url_list) {
+        Collections.shuffle(url_list);
         this.url_list = url_list;
         notifyDataSetChanged();
     }
